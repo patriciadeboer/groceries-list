@@ -1,8 +1,18 @@
 import React from "react";
+import Footer from "./Footer";
+import AddGrocery from "./AddGrocery";
+import GroceryList from "./GroceryList";
 
 const App = () => (
   <div className="app">
-    <h1>Hello World</h1>
+    <img src="groceries.png" alt="Groceries" width="500" />
+    <h1>Groceries List</h1>
+
+    <div className="list">
+      <AddGrocery />
+      <GroceryList groceries={[]}/>
+      <Footer />
+    </div>
   </div>
 );
 
