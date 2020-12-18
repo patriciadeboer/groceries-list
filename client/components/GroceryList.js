@@ -1,4 +1,5 @@
 import React from "react";
+import {connect} from "react-redux";
 import GroceryItem from "./GroceryItem";
 
 const GroceryList = (props) => (
@@ -9,4 +10,6 @@ const GroceryList = (props) => (
   </ul>
 );
 
-export default GroceryList;
+const mapStateToProps = state => ({groceries: state.groceries})
+
+export default connect(mapStateToProps)(GroceryList);
