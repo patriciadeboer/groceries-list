@@ -1,4 +1,5 @@
-import {createStore} from 'redux';
+import {createStore, applyMiddleware} from 'redux';
+import loggerMiddleware from 'redux-logger'
 
 export const ADD_GROCERY = 'ADD_GROCERY';
 
@@ -16,7 +17,21 @@ export const toggleGrocery = (id) => ({
   id
 })
 
-const initialState={groceries:[]};
+export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER'
+const SHOW_ALL = 'SHOW_ALL';
+const SHOW_BOUGHT = 'SHOW_BOUGHT';
+const SHOW_ACTIVE = 'SHOW_ACTIVE';
+
+export const setVisibilityFilter = (status) => ({
+  type: SET_VISIBILITY_FILTER,
+  status
+})
+
+const initialState={
+  groceries:[],
+  status: SHOW_ALL
+};
+
 export const reducer = (state = initialState, action) => {
   console.log(state)
   console.log(action)
@@ -40,16 +55,17 @@ export const reducer = (state = initialState, action) => {
         }
       });
       return {...state, groceries};
-
+    case SET_VISIBILITY_FILTER:
+      return {...state, visibilityFilter: action.status}
     default:
       return state
   }
 }
-const store = createStore(reducer)
+const store = createStore(reducer, applyMiddleware(loggerMiddleware))
 
 //temporary
-store.dispatch(addGrocery("Milk"))
-store.dispatch(addGrocery("Cookies"))
-store.dispatch(toggleGrocery(0))
+// store.dispatch(addGrocery("Milk"))
+// store.dispatch(addGrocery("Cookies"))
+// store.dispatch(toggleGrocery(0))
 
 export default store;
