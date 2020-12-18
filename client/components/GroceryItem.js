@@ -1,6 +1,6 @@
 import React from "react";
 
-const GroceryItem = ({ onClick, bought, text }) => (
+const GroceryItem = ({ onClick, bought, text, quantity }) => (
   <li
     onClick={onClick}
     style={{

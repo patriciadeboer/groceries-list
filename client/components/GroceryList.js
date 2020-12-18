@@ -16,21 +16,22 @@ const GroceryList = props => (
 );
 
 const mapStateToProps = state => {
-  //const filterView = state.groceries.filter(grocery=>)
-  if (state.visibilityFilter === 'SHOW_ALL') {
+  if (state.status === 'SHOW_ALL') {
     return { groceries: state.groceries };
-  } else if (state.visibilityFilter === 'SHOW_BOUGHT') {
+  } else if (state.status === 'SHOW_BOUGHT') {
     return {
       groceries: state.groceries.filter(grocery => {
         return grocery.bought;
       }),
     };
-  } else if (state.visibilityFilter === 'SHOW_ACTIVE') {
+  } else if (state.status === 'SHOW_ACTIVE') {
     return {
       groceries: state.groceries.filter(grocery => {
         return !grocery.bought;
       }),
     };
+  }else{
+    return {groceries: state.groceries}
   }
 };
 const mapDispatchToProps = (dispatch, groceryId) => {
